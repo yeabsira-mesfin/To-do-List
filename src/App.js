@@ -3,7 +3,7 @@ import InputField from "./components/InputField";
 const App = () => {
   return (
     <>
-      <div className="">
+      <div className="flex items-center justify-center">
         <InputField />
       </div>
 
