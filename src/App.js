@@ -1,10 +1,16 @@
 import React from "react";
 import InputField from "./components/InputField";
+import bimage from './assests/todo.png'
+
 const App = () => {
   const arr = [];
   return (
     <>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center h-[100vh]" style={{
+        backgroundImage:`url(${bimage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}>
         <InputField arr={arr}/>
       </div>
 
