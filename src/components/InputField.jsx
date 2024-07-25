@@ -12,6 +12,7 @@ const InputField = ({ arr }) => {
   }
   function handleClick() {
     setInputArray([inputF, ...inputA]);
+    setInput('');
     console.log(inputA);
   }
   function handleRemove(index) {
