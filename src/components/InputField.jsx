@@ -42,10 +42,13 @@ const InputField = ({ arr }) => {
             {inputA.map((input, index) => (
               <li key={index} className="flex items-center justify-between text-white">
                 {input}{" "}
-                <button className="ml-2 text-red-500"
-                onClick={()=>handleRemove(index)}>
-                  <FaTimes />
-                </button>
+                <span>
+                  <button className="text-blue-300">Edit</button>
+                  <button className="ml-2 text-red-500"
+                  onClick={()=>handleRemove(index)}>
+                    <FaTimes />
+                  </button>
+                </span>
               </li>
             ))}
           </ul>
