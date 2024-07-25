@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes,FaEdit,FaSave } from "react-icons/fa";
 
 const InputField = ({ arr }) => {
   const [inputF, setInput] = useState("");
   const [inputA, setInputArray] = useState(arr);
+  const [editIndex,setEditIndex]  = useState(null);
+  const [editValue, setEditValue] = useState('')
 
-  // T
+
   function handleInput(event) {
     setInput(event.target.value);
     // console.log(inputF);
@@ -13,11 +15,19 @@ const InputField = ({ arr }) => {
   function handleClick() {
     setInputArray([inputF, ...inputA]);
     setInput('');
+    
     console.log(inputA);
   }
   function handleRemove(index) {
     const newArr = inputA.filter((item, i) => i !== index);
     setInputArray(newArr);
+  }
+  
+  function handleEdit(){
+    
+  }
+  function handleSave(){
+    
   }
   return (
     <>
@@ -43,7 +53,7 @@ const InputField = ({ arr }) => {
               <li key={index} className="flex items-center justify-between text-white">
                 {input}{" "}
                 <span>
-                  <button className="text-blue-300">Edit</button>
+                  <button className="text-blue-300">{editIndex?<FaEdit/>:<FaSave/>}</button>
                   <button className="ml-2 text-red-500"
                   onClick={()=>handleRemove(index)}>
                     <FaTimes />
