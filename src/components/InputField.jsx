@@ -23,8 +23,9 @@ const InputField = ({ arr }) => {
     setInputArray(newArr);
   }
   
-  function handleEdit(){
-    
+  function handleEdit(index){
+    setEditIndex(index);
+    setEditValue(inputA[index]);
   }
   function handleSave(){
     
@@ -53,7 +54,7 @@ const InputField = ({ arr }) => {
               <li key={index} className="flex items-center justify-between text-white">
                 {input}{" "}
                 <span>
-                  <button className="text-blue-300">{editIndex?<FaEdit/>:<FaSave/>}</button>
+                  <button onClick={() => handleEdit(index)} className="text-blue-300">{<FaEdit/>}</button>
                   <button className="ml-2 text-red-500"
                   onClick={()=>handleRemove(index)}>
                     <FaTimes />
