@@ -13,10 +13,10 @@ const InputField = ({ arr }) => {
   }
 
   function handleClick() {
-    if (inputF.trim() === "") {
-      // Check if the input field is empty
+    if (inputF === "") {
+      
       setNoValue(true);
-      return; // Don't add an empty item to the array
+      return; 
     }
 
     setInputArray([inputF, ...inputA]);
