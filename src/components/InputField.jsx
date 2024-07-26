@@ -13,10 +13,14 @@ const InputField = ({ arr }) => {
   }
 
   function handleClick() {
-    setInputArray([inputF, ...inputA]);
-    if (inputA.length === 0) {
+    if (inputF.trim() === "") {
+      // Check if the input field is empty
       setNoValue(true);
-    } else setNoValue(false);
+      return; // Don't add an empty item to the array
+    }
+
+    setInputArray([inputF, ...inputA]);
+    setNoValue(false);
     setInput("");
   }
 
@@ -58,6 +62,7 @@ const InputField = ({ arr }) => {
           </button>
         </div>
         <div className="mt-4">
+          {novalue && <h1 className="text-red-500 ">Please enter your task</h1>}
           <ul>
             {inputA.map((input, index) => (
               <li
@@ -81,8 +86,6 @@ const InputField = ({ arr }) => {
                   </>
                 ) : (
                   <>
-                    {novalue ? (
-                      <>
                         {input}
                         <span>
                           <button
@@ -98,10 +101,7 @@ const InputField = ({ arr }) => {
                             <FaTimes />
                           </button>
                         </span>
-                      </>
-                    ) : (
-                      <h1 className="">Please Enter you task</h1>
-                    )}
+                     
                   </>
                 )}
               </li>
