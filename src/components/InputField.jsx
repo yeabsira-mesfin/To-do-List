@@ -67,7 +67,7 @@ const InputField = ({ arr }) => {
             {inputA.map((input, index) => (
               <li
                 key={index}
-                className="flex items-center justify-between text-black"
+                className="flex items-center justify-between font-bold text-black"
               >
                 {editIndex === index ? (
                   <>
