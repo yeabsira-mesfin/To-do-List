@@ -1,35 +1,44 @@
 import { useState } from "react";
-import { FaTimes,FaEdit,FaSave } from "react-icons/fa";
+import { FaTimes, FaEdit, FaSave } from "react-icons/fa";
 
 const InputField = ({ arr }) => {
   const [inputF, setInput] = useState("");
   const [inputA, setInputArray] = useState(arr);
-  const [editIndex,setEditIndex]  = useState(null);
-  const [editValue, setEditValue] = useState('')
-
+  const [editIndex, setEditIndex] = useState(null);
+  const [editValue, setEditValue] = useState("");
+  const [novalue, setNoValue] = useState(false);
 
   function handleInput(event) {
     setInput(event.target.value);
-    // console.log(inputF);
   }
+
   function handleClick() {
     setInputArray([inputF, ...inputA]);
-    setInput('');
-    
-    console.log(inputA);
+    if (inputA.length === 0) {
+      setNoValue(true);
+    } else setNoValue(false);
+    setInput("");
   }
+
   function handleRemove(index) {
     const newArr = inputA.filter((item, i) => i !== index);
     setInputArray(newArr);
   }
-  
-  function handleEdit(index){
+
+  function handleEdit(index) {
     setEditIndex(index);
     setEditValue(inputA[index]);
   }
-  function handleSave(){
-    
+
+  function handleSave() {
+    const updatedArray = inputA.map((item, index) =>
+      index === editIndex ? editValue : item
+    );
+    setInputArray(updatedArray);
+    setEditIndex(null);
+    setEditValue("");
   }
+
   return (
     <>
       <div className="block mx-3 mt-4">
@@ -51,15 +60,50 @@ const InputField = ({ arr }) => {
         <div className="mt-4">
           <ul>
             {inputA.map((input, index) => (
-              <li key={index} className="flex items-center justify-between text-white">
-                {input}{" "}
-                <span>
-                  <button onClick={() => handleEdit(index)} className="text-blue-300">{<FaEdit/>}</button>
-                  <button className="ml-2 text-red-500"
-                  onClick={()=>handleRemove(index)}>
-                    <FaTimes />
-                  </button>
-                </span>
+              <li
+                key={index}
+                className="flex items-center justify-between text-black"
+              >
+                {editIndex === index ? (
+                  <>
+                    <input
+                      type="text"
+                      value={editValue}
+                      onChange={(e) => setEditValue(e.target.value)}
+                      className="px-4 py-2 border border-blue-500 rounded focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    />
+                    <button
+                      onClick={handleSave}
+                      className="ml-2 text-green-500"
+                    >
+                      <FaSave />
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    {novalue ? (
+                      <>
+                        {input}
+                        <span>
+                          <button
+                            onClick={() => handleEdit(index)}
+                            className="text-blue-300"
+                          >
+                            <FaEdit />
+                          </button>
+                          <button
+                            className="ml-2 text-red-500"
+                            onClick={() => handleRemove(index)}
+                          >
+                            <FaTimes />
+                          </button>
+                        </span>
+                      </>
+                    ) : (
+                      <h1 className="">Please Enter you task</h1>
+                    )}
+                  </>
+                )}
               </li>
             ))}
           </ul>

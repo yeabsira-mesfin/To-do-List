@@ -1,6 +1,6 @@
 import React from "react";
 import InputField from "./components/InputField";
-import bimage from './assests/todo.png'
+import bimage from './assests/todolist.png'
 
 const App = () => {
   const arr = [];
